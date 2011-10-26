@@ -1,0 +1,15 @@
+<NotepadPlus>
+    <InternalCommands>
+        <Shortcut id="49000" Ctrl="yes" Alt="no" Shift="no" Key="116" />
+    </InternalCommands>
+    <Macros />
+    <UserDefinedCommands>
+        <Command name="&#x6267;&#x884C;" Ctrl="no" Alt="no" Shift="no" Key="116">&quot;$(NPP_DIRECTORY)\..\AutoHotkey.exe&quot; &quot;$(FULL_CURRENT_PATH)&quot;</Command>
+        <Command name="&#x7F16;&#x8BD1;&#x811A;&#x672C;" Ctrl="no" Alt="no" Shift="no" Key="118">&quot;$(NPP_DIRECTORY)\..\compiler\Ahk2Exe.exe&quot; /in &quot;$(FULL_CURRENT_PATH)&quot;</Command>
+        <Command name="SmartGUI" Ctrl="yes" Alt="no" Shift="no" Key="120">&quot;$(NPP_DIRECTORY)\..\Tools\smartgui\SmartGUI.exe&quot;</Command>
+    </UserDefinedCommands>
+    <PluginCommands>
+        <PluginCommand moduleName="NppExec.dll" internalID="0" Ctrl="no" Alt="no" Shift="no" Key="0" />
+    </PluginCommands>
+    <ScintillaKeys />
+</NotepadPlus>
