@@ -1,22 +1,22 @@
 # SciTE session file
 
-position.left=64
-position.top=57
+position.left=126
+position.top=58
 position.width=1008
 position.height=583
-position.maximize=1
+position.maximize=0
 
-mru.1.path=E:\code.google\Script\AutoHotkey\AutoHotkey_L\SciTE_rc1\platforms.properties
-mru.2.path=E:\code.google\Script\AutoHotkey\AutoHotkey_L\SciTE_rc1\脚本模板.ahk
-mru.3.path=E:\code.google\Script\AutoHotkey\AutoHotkey_L\Compiler\1.ahk
-mru.4.path=E:\code.google\Script\AutoHotkey\AutoHotkey_L\Compiler\Ahk2Exe_RES\Ahk2Exe_RES.ahk
-mru.5.path=E:\code.google\Script\AutoHotkey\AutoHotkey_L\AHKTool.ahk
-mru.6.path=E:\code.google\Script\AutoHotkey\AutoHotkey_L\新建 AutoHotkey 脚本.ahk
-mru.7.path=E:\code.google\Script\AutoHotkey\MyAHK\ScriptSetting v1.0.3.ahk
-mru.8.path=E:\code.google\Script\AutoHotkey\AutoHotkey_L\SciTE_rc1\tools\PropEdit.ahk
-mru.9.path=C:\Documents and Settings\Administrator\桌面\新建 AutoHotkey 脚本.ahk
-mru.10.path=E:\code.google\Script\autohotkey-cn\AHKTool.ahk
+mru.1.path=E:\code.google\Script\AutoHotkey\AutoHotkey_L\AHKTool.ahk
+mru.2.path=E:\code.google\Script\AutoHotkey\AutoHotkey_L\新建 AutoHotkey 脚本.ahk
+mru.3.path=E:\code.google\Script\AutoHotkey\MyAHK\ScriptSetting v1.0.3.ahk
+mru.4.path=E:\code.google\Script\AutoHotkey\AutoHotkey_L\SciTE_rc1\tools\PropEdit.ahk
+mru.5.path=E:\code.google\Script\autohotkey-cn\AHKTool.ahk
+mru.6.path=C:\Documents and Settings\Administrator\桌面\新建 AutoHotkey 脚本.ahk
+mru.7.path=E:\code.google\yuan6319\mycode\AutoHotkey Script\附加快捷键.ahk
+mru.8.path=E:\code.google\yuan6319\mycode\AutoHotkey Script\CloudEBook.ahk
+mru.9.path=E:\code.google\yuan6319\mycode\AutoHotkey Script\URL.ahk
+mru.10.path=E:\code.google\yuan6319\mycode\AutoHotkey Script\AutoHotkey CNBBS.ahk
 
-buffer.1.path=E:\code.google\Script\autohotkey-cn\AHKTool.ahk
-buffer.1.position=2265
+buffer.1.path=E:\code.google\yuan6319\mycode\AutoHotkey Script\AutoHotkey CNBBS.ahk
+buffer.1.position=2754
 buffer.1.current=1
