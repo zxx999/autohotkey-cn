@@ -1,0 +1,1 @@
+需要和AutoHotkeySC.bin或相关.bin同所在目录
