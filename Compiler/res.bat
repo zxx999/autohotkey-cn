@@ -1,1 +1,0 @@
-Ahk2Exe_RES.exe 1.ahk
