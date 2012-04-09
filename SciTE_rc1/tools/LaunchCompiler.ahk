@@ -25,10 +25,11 @@ Loop,%0%
 	if param = /gui
 		ahk_g=gui
 }
-compiler_RES = ..\..\Compiler\Ahk2Exe_RES.exe
+compiler_RES = ..\..\Compiler\Ahk2Exe_RES.ahk
 compiler = ..\..\Compiler\Ahk2Exe.exe
+AHK=..\..\AutoHotkey.exe
 if ahk_a && FileExist(compiler_RES)
-	RunWait,%compiler_RES% "%ahk_a%"
+	RunWait,"%AHK%"  /ErrorStdOut  "%compiler_RES%" "%ahk_a%"
 
 if ahk_a && ahk_g && FileExist(compiler_RES)
 	RunWait,%compiler% "%ahk_a%"

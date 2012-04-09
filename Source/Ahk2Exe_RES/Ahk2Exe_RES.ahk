@@ -1,11 +1,51 @@
+
+/****************预编译程序参数******************
+[Compiler]
+Exe_Ico=
+Exe_OutName=
+Exe_Bin=
+Exe_mpress=1
+[Res]
+Description=自定义编译器
+Version=1.0.0.0
+Copyright=by 星雨朝霞
+首要图标
+Del_ICON_Main=
+源码脚本图标
+Del_ICON_Shortcut=
+挂起图标
+Del_ICON_Suspend=
+暂停图标
+Del_ICON_pause=
+同时挂起与暂停图标
+Del_ICON_S_P=
+Win9x系统托盘首要图标
+Del_ICON_Maim9x=1
+Win9x系统挂起图标
+Del_ICON_Suspend9x=1
+托盘首要图标
+Del_ICON_Tray=
+默认快捷键
+Del_key=1
+默认对话框
+Del_Dialog=1
+默认菜单
+Del_Menu=1
+*/ ;==============================脚本开始====================================
 #NoEnv
 SendMode Input
 SetWorkingDir %A_ScriptDir%
-OutText("正在处理编译参数...")
+#NoTrayIcon
+DllCall("AllocConsole")
+;~ stdout := FileOpen(DllCall("GetStdHandle", "int", -11, "ptr"), "h `n")
+;~ stdout := DllCall("GetStdHandle", "int", -11, "ptr")
+WriteLine("+> 编译初始化...")
 ResHacker=%A_ScriptDir%\ResHacker.exe
 GoRC=%A_ScriptDir%\GoRC.exe
+iconv=%A_ScriptDir%\iconv.exe
 FileInstall,GoRC.exe,%GoRC%
 FileInstall,ResHacker.exe,%ResHacker%
+FileInstall,iconv.exe,%iconv%
 AHKFile=%1%
 IfNotExist,%AHKFile%
     ExitApp
@@ -24,16 +64,16 @@ if Exe_OutName=
 if Exe_Bin!=
     Exe_Bin= /bin "%Exe_Bin%"
 
-CompilerC= /in %AHKFile% %Exe_Ico% /out "%Exe_OutName%" %Exe_Bin% /mpress 0
+CompilerC= /in "%AHKFile%" %Exe_Ico% /out "%Exe_OutName%" %Exe_Bin% /mpress 0
 
 ahk2exe=%A_ScriptDir%\ahk2exe.exe
 IfExist,%ahk2exe%
 {
-    OutText("正在编译...")
+    WriteLine("+> 正在编译...")
     RunWait,"%ahk2exe%" %CompilerC%
     If FileExist(ResHacker) && FileExist(Exe_OutName)
     {
-        OutText("正在处理预编译参数...")
+        WriteLine("+> 正在处理预编译参数...")
         IniRead,Description,%AHKFile%,Res,Description,%A_Space%
         FileGetVersion,AHKVersion,%A_ScriptDir%\..\AutoHotkey.exe
         if ErrorLevel
@@ -71,7 +111,7 @@ IfExist,%ahk2exe%
         }
         }
 
-        ),%VERSION_rc%
+        ),%VERSION_rc%,CP936
         IniRead,Del_ICON_Main,%AHKFile%,Res,Del_ICON_Main,%A_Space%
         IniRead,Del_ICON_Shortcut,%AHKFile%,Res,Del_ICON_Shortcut,%A_Space%
         IniRead,Del_ICON_Suspend,%AHKFile%,Res,Del_ICON_Suspend,%A_Space%
@@ -149,6 +189,8 @@ IfExist,%ahk2exe%
             -delete versioninfo,1,1033
             -addoverwrite VERSION.RES,,,
         ),%Res%
+        WriteLine("+> 正在改写版本...")
+        RunWait,"%iconv%" VERSION.rc -f utf-8 -t gb2312,%A_ScriptDir%,Hide
         RunWait,"%GoRC%" /r "%VERSION_rc%",%A_ScriptDir%,Hide
         RunWait,"%ResHacker%" -script "%Res%"
         FileDelete,%Res%
@@ -157,15 +199,21 @@ IfExist,%ahk2exe%
         FileDelete,VERSION.RES
         FileDelete,ResHacker.ini
         if FileExist(A_ScriptDir "\mpress.exe") && Exe_mpress
+        {
+            WriteLine("+> 正在压缩程序...")
             RunWait, "%A_ScriptDir%\mpress.exe" -q -x "%Exe_OutName%",, Hide
+        }
     }
 }
 if A_IsCompiled
 {
     FileDelete,%ResHacker%
     FileDelete,%GoRC%
+    FileDelete,%iconv%
 }
+WriteLine("+> 编译完成!")
 
-OutText(iText="") {
-TrayTip,编译程序,%iText%,30
+WriteLine(Line){
+;~ stdout.WriteLine(Line)
+;~ stdout.Read(0) ; 刷新写入缓冲区.
 }
