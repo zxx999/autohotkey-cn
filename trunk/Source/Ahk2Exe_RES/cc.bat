@@ -1,0 +1,1 @@
+iconv.exe "E:\code.google\Script\autohotkey-cn\Compiler\VERSION.rc" -f utf-8 -t  gb2312
