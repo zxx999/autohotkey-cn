@@ -75,7 +75,7 @@ Gui, 1:Add, GroupBox, x5 y5 w232 h40 , 窗口信息
 Gui, 1:Add, Text, x12 y22 w42 h22 , 标题:
 Gui, 1:Add, Edit, x50 y19 w180 h19 ReadOnly -Wrap  vTitle
 Gui, 1:Add, Picture, x243 y10 w32 h32 gSetico vPic
-Gui, 1:Add, Tab2,-Wrap AltSubmit x2 y50 w275 h358  vTab1,窗口|控件|V/A文本|样式表|生成
+Gui, 1:Add, Tab2,-Wrap AltSubmit x2 y50 w275 h358  vTab1,窗口|控件|V/A文本|样式表|操作
 ;==========================================================
 Gui, 1:Tab, 1  ;以下创建的控件属于第一个标签页
 Gui, 1:Add, ListView,NoSort -Multi gListView_DoubleClick vListView1  x8 y75 w263 h306 , 属性|值
@@ -126,7 +126,9 @@ LV_ModifyCol()
 Gui, 1:Tab, 5 ;以下创建的控件属于第5个标签页
 Gui, Add, Text,x8 y77,窗口识别条件:
 Gui, Add, Checkbox,Checked x90 y77 vCheckbox1,标题
-Gui, Add, Checkbox,x150 y77 vCheckbox2,类
+Gui, Add, Checkbox,Checked x140 y77 vCheckbox2,类
+Gui, Add, Checkbox,x180 y77 vCheckbox3,进程名
+Gui, Add, Button,x236 y73 w35 h20 gbutton1,生成
 Gui, 1:Add, Edit, HScroll ReadOnly x8 y95 w263 h305 vGenerate_text
 ;==========================================================
 Gui, 1:+HwndAHKID +OwnDialogs
@@ -363,37 +365,100 @@ Generate(){ ;生成简单代码
 	Gui, 1:ListView,ListView1	;切换到窗口列表以设置数据
 	GuiControlGet,Checkbox1_C,,Checkbox1
 	GuiControlGet,Checkbox2_C,,Checkbox2
-	if (Checkbox1_C=1 and Checkbox2_C=0)
-		LV_GetText(text1,1,2)
-	else if (Checkbox2_C=1 and Checkbox1_C=0) {
-		LV_GetText(text1,2,2)
-		text1=ahk_class %text1%
-	}else{
-		LV_GetText(text1,1,2)
-		LV_GetText(text2,2,2)
-		text1=%text1% ahk_class %text2%
-	}
-	SetText("",0)
-	if text1!=
+	GuiControlGet,Checkbox3_C,,Checkbox3
+	GuiControlGet,ALL_text,,Hidden_text
+	StringSplit,ALL_text,ALL_text,`n
+	LV_GetText(text1,1,2) ;标题
+	LV_GetText(text2,2,2)	;类名
+	LV_GetText(text3,10,2)	;进程名
+	LV_GetText(text4,6,2)	;窗口内指定坐标
+	Gui, 1:ListView,ListView2
+	LV_GetText(text5,1,2) ;获取控件类
+	LV_GetText(text6,7,2) ;获取控件内坐标
+	WinTitle=
+	Loop,%ALL_text0%
 	{
-		SetText(";------<<操作代码>>-------")
-		SetText("`n;等待指定标题窗口出现`nWinWait, " text1)
-		LV_GetText(text2,6,2)
-		SetText("`n;点击窗口内指定坐标`nControlClick, " text2 ", " text1)
-		Gui, 1:ListView,ListView2
-		LV_GetText(text2,1,2)
-		if text2!=
+		Index:=ALL_text0-A_Index+1
+		Text_index:=ALL_text%Index%
+		if Text_index!=
 		{
-			SetText("`n;左键点击控件1次`nControlClick, " text2 ", " text1)
-			LV_GetText(text3,7,2)
-			if text3!=
-				SetText("`n;左键点击控件内指定坐标1次`nControlClick, " text2 ", " text1 ",,LEFT,1,NA " text3)
+			
+			WinText:=SubStr(Text_index,1,10)
+			Break
+		}
+		
+	}
+	
+	if (Checkbox1_C=1)
+		WinTitle=%text1%
+	if (Checkbox2_C=1) 
+		WinTitle=%WinTitle% ahk_class %text2%
+	if (Checkbox3_C=1) 
+		WinTitle=%WinTitle% ahk_exe %text3%
+	SetText("",0)
+	if WinTitle!=
+	{
+		;~ SetText(";------<<操作代码>>-------")
+		text=
+		(
+		;等待指定标题窗口出现
+		WinWait, %WinTitle%, %WinText%
+		
+		)
+		SetText(text)
+		
+		text=
+		(
+		;点击窗口内指定坐标
+		ControlClick, %text4%, %WinTitle%, %WinText%
+		
+		)
+		SetText(text)
+
+		if text5!=
+		{
+			text=
+			(
+			;点击控件
+			ControlClick, %text5%, %WinTitle%, %WinText%
+			
+			)
+			SetText(text)
+			
+			if text6!=
+			{
+				text=
+				(
+				;左键点击控件内指定坐标1次
+				ControlClick, %text5%, %WinTitle%, %WinText%, LEFT, 1, %text3%
+				
+				)
+				SetText(text)
+			}
+			if % InStr(text5,"Button")
+			{
+				text=
+				(
+				;控件选中(如果此控件为选择框或单选框) Check替换为Uncheck即取消选中
+				Control, Check, , %text5%, %WinTitle%, %WinText%
+				
+				)
+				SetText(text)
+			}
+			text=
+			(
+			;向控件发送空格键
+			ControlSend, %text5%,{Space}, %WinTitle%, %WinText%
+			
+			)
+			SetText(text)
 		}
 	}
 }
 
 
 SetText(iText,o=1){
+	StringReplace,iText,iText,%A_Tab% ,,All
 	if (o=1){
 		GuiControlGet,ControlText,,Generate_text
 		if ControlText=`n
@@ -550,6 +615,9 @@ LV_ModifyCol()
 Generate()
 return
 
+Button1:
+Generate()
+return
 
 _MenuIsCheck( ThisMenu, ThisMenuItem, ValueName) { ;从注册表读取属性
 	RegRead,ThisCheck,HKCU,Software\AutoHotKey\AHKInfo,%ValueName%

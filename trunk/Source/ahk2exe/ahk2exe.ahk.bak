@@ -185,7 +185,6 @@ ige += 14
 DllCall("UpdateResource", "ptr", re, "ptr", 14, "ptr", iconID, "ushort", 0x409, "ptr", &rsrcIconGroup, "uint", rsrcIconGroupSize, "uint")
 return true
 }
-
 EnumIcons(ExeFile, iconID)
 {
 global _EI_HighestIconID

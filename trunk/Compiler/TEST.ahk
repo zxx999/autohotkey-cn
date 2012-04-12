@@ -7,7 +7,7 @@ IniRead,Copyright,%AHKFile%,Res,Copyright,%A_Space%
 StringReplace,Version_a,Version,`.,`,,All
 		
 FileDelete,%VERSION_rc%
-File=
+FileAppend,
 (
 1 VERSIONINFO
 FILEVERSION %Version_a%
@@ -35,16 +35,4 @@ BLOCK "VarFileInfo"
 }
 }
 
-)
-StrPutVar(file,eee,"cp0")
-MsgBox,% eee
-
-StrPutVar(string, ByRef var, encoding)
-{
-    ; 确定容量.
-    VarSetCapacity( var, StrPut(string, encoding)
-        ; StrPut 返回字符数, 但 VarSetCapacity 需要字节数.
-        * ((encoding="utf-16"||encoding="cp1200") ? 2 : 1) )
-    ; 复制或转换字符串.
-    return StrPut(string, &var, encoding)
-}
+),%VERSION_rc%
