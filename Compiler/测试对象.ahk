@@ -5,7 +5,7 @@ Exe_OutName=
 Exe_Bin=
 Exe_mpress=1
 [Res]
-Description=AutoHotkey_L 脚本
+Description=AutoHotkey_L
 Version=1.1.7.3
 Copyright=Copyright (C) 2012
 首要图标
