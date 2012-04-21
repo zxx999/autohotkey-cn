@@ -17,23 +17,26 @@ ExitApp
 Match:
 Gui,Submit,Nohide
 LV_Delete()
-FoundPos:=RegExMatch(Edit1,"O)" Edit2,OutMatch)
-if ErrorLevel =0
+FoundPos:=RegExMatch(Edit1,Edit2,OutMatch,Edit3)
+if ! ErrorLevel
 {
 	Count:=OutMatch.Count()
 	Loop,%Count%
 		LV_Add("",A_Index,OutMatch.Value(A_Index))
-	GuiControlGet,NeedleRegEx,,Edit2
-	MatchText=
-	(
-	Haystack=这里为源字符串,请自行修改
-	NeedleRegEx=O)%NeedleRegEx%
-	FoundPos:=RegExMatch(Haystack,NeedleRegEx,OutMatch)
-	MsgCount:=OutMatch.Count()
-	Msg1:=OutMatch.Value(1)
-	MsgBox,匹配数量: `%MsgCount`%``n其中第一个为: `%Msg1`%
-	)
-	StringReplace,MatchText,MatchText,%A_Tab% ,,All
+	;~ GuiControlGet,NeedleRegEx,,Edit2
+MatchText=
+(
+Haystack=
+`(
+%Edit1%
+`)
+NeedleRegEx=%Edit2%
+FoundPos:=RegExMatch(Haystack,NeedleRegEx,OutMatch)
+MsgCount:=OutMatch.Count()
+Msg1:=OutMatch.Value(1)
+MsgBox,匹配数量: `%MsgCount`%``n其中第一个为: `%Msg1`%
+)
+	;~ StringReplace,MatchText,MatchText,%A_Tab% ,,All
 	GuiControl,,Edit4,%MatchText%
 }else
 	LV_Add("",-1,ErrorLevel)

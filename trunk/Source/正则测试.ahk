@@ -10,6 +10,7 @@ GoMatch:
 Gui,Submit,Nohide
 OutPut=
 FoundPos:=RegExMatch(Haystack,Regular,OutPut)
+;如果FoundPos为空则把它内容设置为Error,如果不是就把:后的FoundPos弄进前的FoundPos中
 FoundPos:=(FoundPos="") ? "Error" : FoundPos
 Msg=[%FoundPos%] %OutPut%
 GuiControl,,Result,%Msg%

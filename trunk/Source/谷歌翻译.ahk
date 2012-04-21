@@ -38,11 +38,8 @@ CoordMode, ToolTip
 CoordMode, Mouse
 Thread, Interrupt ,0
 
-
-#c::
-ToolTip,
-KeyWait,LWin
-ToolTip,正在翻译: %Clipboard%,10,10
+~MButton::
+ToolTip,正在翻译: %Clipboard%,A_ScreenWidth,A_ScreenHeight-50
 SetTimer,translate,On
 return
 
@@ -56,12 +53,10 @@ RegExMatch(reText,RegEx , SubPat)
 if ! ErrorLevel
 {
 Clipboard:=SubPat.Value(1)
-MouseGetPos,X,Y
-X:=X+10
-Y:=Y+10
-ToolTip,翻译结果: %Clipboard%,%x%,%y%
+
+ToolTip,翻译结果: %Clipboard%,A_ScreenWidth,A_ScreenHeight-50
 } else
-	ToolTip,各种原因!不能翻译了!,10,10
+	ToolTip,各种原因!我不知道怎么回事!,A_ScreenWidth,A_ScreenHeight-50
 SetTimer, RemoveToolTip, 2000
 return
 
