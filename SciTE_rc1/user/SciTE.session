@@ -1,25 +1,22 @@
 # SciTE session file
 
-position.left=270
-position.top=191
+position.left=492
+position.top=117
 position.width=817
-position.height=603
+position.height=599
 position.maximize=0
 
-mru.1.path=C:\Documents and Settings\Administrator\桌面\_AUTOHOTKEY SCRIPT_.AHK
-mru.2.path=E:\code.google\Script\autohotkey-cn\Source\AHKinfo\AHKInst.ahk
-mru.3.path=E:\TDDOWNLOAD\diannaodian_v3.3\电脑店U盘启动盘制作工具V3.3\电脑店U盘启动盘制作工具V3.3.exe.au3
-mru.4.path=E:\code.google\Script\autohotkey-cn\Source\AutoHotkey CNBBS.ahk
-mru.5.path=E:\code.google\Script\autohotkey-cn\Lib\My.ahk
-mru.6.path=E:\code.google\Script\autohotkey-cn\Source\谷歌翻译.ahk
-mru.7.path=E:\code.google\Script\autohotkey-cn\Source\正则测试.ahk
-mru.8.path=E:\code.google\Script\autohotkey-cn\Source\正则测试1.ahk
+mru.1.path=D:\Data Storage\QQUserInfo\458926486\FileRecv\Tools\[AppMenu].ahk
+mru.2.path=D:\Data Storage\菜单\文件夹\win.au3
+mru.3.path=D:\Data Storage\菜单\文件夹\新建 AutoHotkey 脚本.ahk
+mru.4.path=E:\code.google\Script\autohotkey-cn\Source\AHKinfo\ahkinfo1.3.ahk
+mru.5.path=D:\Data Storage\QQUserInfo\458926486\FileRecv\[AppMenu].ahk
+mru.6.path=C:\Documents and Settings\Administrator\My Documents\下载\HotkeyControl-Appinn.com\HotkeyControl\Example.ahk
+mru.7.path=C:\Documents and Settings\Administrator\My Documents\下载\HotkeyControl-Appinn.com\HotkeyControl\HotkeyControl.ahk
+mru.8.path=D:\Data Storage\菜单\程序菜单.ahk
 mru.9.path=C:\Documents and Settings\Administrator\桌面\新建 AutoHotkey 脚本.ahk
-mru.10.path=E:\code.google\Script\autohotkey-cn\Source\AHKinfo\ahkinfo1.3.ahk
+mru.10.path=E:\code.google\Script\autohotkey-cn\Source\隐显窗口.ahk
 
-buffer.1.path=C:\Documents and Settings\Administrator\桌面\新建 AutoHotkey 脚本.ahk
-buffer.1.position=338
+buffer.1.path=E:\code.google\Script\autohotkey-cn\Source\隐显窗口.ahk
+buffer.1.position=641
 buffer.1.current=1
-
-buffer.2.path=E:\code.google\Script\autohotkey-cn\Source\AHKinfo\ahkinfo1.3.ahk
-buffer.2.position=12678
